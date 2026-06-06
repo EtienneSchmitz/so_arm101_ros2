@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+  Gazebo Harmonic integration for the SO-101.
+
+  Loads the gz_ros2_control *system* plugin into the simulation so the
+  controller_manager is instantiated inside the sim process. The controllers
+  YAML path is passed in (controllers_file) so this package keeps no build
+  dependency on so101_bringup (avoids a circular dependency).
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="so101">
+
+  <xacro:macro name="so101_gazebo" params="controllers_file">
+    <gazebo>
+      <plugin filename="gz_ros2_control-system"
+              name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>${controllers_file}</parameters>
+        <ros>
+          <remapping>/controller_manager/robot_description:=/robot_description</remapping>
+        </ros>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

@@ -12,13 +12,29 @@
     <xacro:arg name="initial_positions_file" default="$(find so101_description)/config/initial_positions.yaml"/>
     <xacro:arg name="mode" default="gazebo"/>
     <xacro:arg name="joint_states_gui" default="false"/>
+    <xacro:arg name="controllers_file" default="$(find so101_description)/config/initial_positions.yaml"/>
 
     <xacro:include filename="$(find so101_description)/urdf/so101.urdf"/>
     <xacro:include filename="$(find so101_description)/urdf/so101.transmission.xacro"/>
 
+    <!-- Anchor the arm to the world: fixes the KDL "root link with an inertia"
+         warning, keeps the base from falling/sliding in Gazebo, and gives MoveIt
+         a fixed virtual joint root. A table-mounted arm is rigidly fixed anyway. -->
+    <link name="world"/>
+    <joint name="world_to_base" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
     <xacro:if value="$(eval not joint_states_gui)">
         <xacro:include filename="$(find so101_description)/urdf/so101.ros2_control.xacro"/>
         <xacro:so101_ros2_control name="RobotSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+        <xacro:if value="$(eval mode == 'gazebo')">
+            <xacro:include filename="$(find so101_description)/urdf/so101.gazebo.xacro"/>
+            <xacro:so101_gazebo controllers_file="$(arg controllers_file)"/>
+        </xacro:if>
     </xacro:if>
 
 </robot>
