@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+  URDF chargé par MoveIt pour la planification.
+  Wrapper minimal qui include le xacro canonique de so101_description.
+
+  joint_states_gui:=true => MoveIt ne voit pas les blocs <ros2_control>
+  ni le plugin Gazebo. Le ros2_control runtime est porté par
+  so101_bringup/gazebo.launch.py (sim) ou un futur driver hardware (réel).
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="so101">
+  <xacro:include filename="$(find so101_description)/urdf/so101.urdf.xacro"/>
+</robot>

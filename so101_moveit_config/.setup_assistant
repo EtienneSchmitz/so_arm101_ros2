@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: ""
+    relative_path: /tmp/so101_for_msa.urdf
+  srdf:
+    relative_path: config/so101.srdf
+  package_settings:
+    author_name: Etienne Schmitz
+    author_email: contact@etienne-schmitz.com
+    generated_timestamp: 1780765356
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
