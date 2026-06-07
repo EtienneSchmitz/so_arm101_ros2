@@ -14,8 +14,13 @@
     <xacro:arg name="joint_states_gui" default="false"/>
     <xacro:arg name="controllers_file" default="$(find so101_description)/config/initial_positions.yaml"/>
 
-    <xacro:include filename="$(find so101_description)/urdf/so101.urdf"/>
+    <!-- Bras en macro reutilisable (prefix vide => noms standalone inchanges).
+         La meme macro sert au montage sur la base mobile LeKiwi (prefix 'arm_'). -->
+    <xacro:include filename="$(find so101_description)/urdf/so101.macro.xacro"/>
+    <xacro:so101_arm/>
+
     <xacro:include filename="$(find so101_description)/urdf/so101.transmission.xacro"/>
+    <xacro:so101_transmission/>
 
     <!-- Anchor the arm to the world: fixes the KDL "root link with an inertia"
          warning, keeps the base from falling/sliding in Gazebo, and gives MoveIt

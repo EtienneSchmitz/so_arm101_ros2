@@ -1,71 +1,74 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="so101">
 
-    <transmission name="gripper_trans">
+    <xacro:macro name="so101_transmission" params="prefix:=''">
+
+    <transmission name="${prefix}gripper_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="gripper">
+        <joint name="${prefix}gripper">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor6">
+        <actuator name="${prefix}motor6">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
 
-    <transmission name="wrist_roll_trans">
+    <transmission name="${prefix}wrist_roll_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="wrist_roll">
+        <joint name="${prefix}wrist_roll">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor5">
+        <actuator name="${prefix}motor5">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
 
-    <transmission name="wrist_flex_trans">
+    <transmission name="${prefix}wrist_flex_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="wrist_flex">
+        <joint name="${prefix}wrist_flex">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor4">
+        <actuator name="${prefix}motor4">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
 
 
-    <transmission name="elbow_flex_trans">
+    <transmission name="${prefix}elbow_flex_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="elbow_flex">
+        <joint name="${prefix}elbow_flex">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor3">
+        <actuator name="${prefix}motor3">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
 
-    <transmission name="shoulder_lift_trans">
+    <transmission name="${prefix}shoulder_lift_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="shoulder_lift">
+        <joint name="${prefix}shoulder_lift">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor2">
+        <actuator name="${prefix}motor2">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
 
-    <transmission name="shoulder_pan_trans">
+    <transmission name="${prefix}shoulder_pan_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="shoulder_pan">
+        <joint name="${prefix}shoulder_pan">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor1">
+        <actuator name="${prefix}motor1">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
 
+    </xacro:macro>
 </robot>
